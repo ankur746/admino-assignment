@@ -3,7 +3,7 @@ function add(numbers) {
       return 0;
     }
 
-  const numArray = numbers.split(/[\n,]/).map(Number);
+  const numArray = numbers.split(/[\n,]/).map(Number).filter(num => !isNaN(num));
   
   return numArray.reduce((sum, num) => sum + num, 0);
   }

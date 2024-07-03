@@ -36,3 +36,11 @@ test('handles decimal numbers', () => {
 test('handles mixed decimal and integer numbers', () => {
   expect(add('1.5,2,3.5')).toBe(7);
 });
+
+test('returns the sum of numbers separated by new lines', () => {
+  expect(add('1\n2\n3')).toBe(6);
+});
+
+test('returns the sum of numbers separated by both commas and new lines', () => {
+  expect(add('1\n2,3')).toBe(6);
+});
