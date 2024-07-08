@@ -22,11 +22,23 @@ function add(numbers) {
   let numArray = normalizedNumbers.split(delimiter);
 
   let sum = 0;
+  let negativeNumbers = [];
+
   for (let num of numArray) {
     let parsedNumber = parseFloat(num);
     if (!isNaN(parsedNumber)) {
-      sum += parsedNumber;
+      if (parsedNumber < 0) {
+        negativeNumbers.push(parsedNumber);
+      } else {
+        sum += parsedNumber;
+      }
     }
+  }
+
+  if (negativeNumbers.length > 0) {
+    throw new Error(
+      `negative numbers not allowed: ${negativeNumbers.join(", ")}`
+    );
   }
 
   return sum;

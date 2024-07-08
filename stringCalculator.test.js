@@ -24,9 +24,10 @@ test("handles spaces in the input string", () => {
   expect(add("1, 2, 3")).toBe(6);
 });
 
-test("handles negative numbers", () => {
-  expect(add("-1,-2")).toBe(-3);
-});
+// Skip Because of step 5
+// test("handles negative numbers", () => {
+//   expect(add("-1,-2")).toBe(-3);
+// });
 
 test("handles decimal numbers", () => {
   expect(add("1.5,2.5")).toBe(4);
@@ -47,4 +48,14 @@ test("returns the sum of numbers separated by both commas and new lines", () => 
 test("should handle complex custom delimiters", () => {
   expect(add("//[***]\n1***2***3")).toBe(6);
   expect(add("//[&&]\n4&&5&&6")).toBe(15);
+});
+
+test("throws an exception for negative numbers", () => {
+  expect(() => add("-1,2,3")).toThrow("negative numbers not allowed: -1");
+  expect(() => add("1,-2,3")).toThrow("negative numbers not allowed: -2");
+  expect(() => add("1,2,-3")).toThrow("negative numbers not allowed: -3");
+  expect(() => add("-1,-2,-3")).toThrow(
+    "negative numbers not allowed: -1, -2, -3"
+  );
+  expect(() => add("//;\n1;-2;3")).toThrow("negative numbers not allowed: -2");
 });
